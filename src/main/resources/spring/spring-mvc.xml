@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    					http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    					http://www.springframework.org/schema/context
+    					http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    					http://www.springframework.org/schema/mvc
+    					http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+    					http://code.alibabatech.com/schema/dubbo
+    					http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 读取配置文件 -->
+	<!-- <context:property-placeholder location="classpath:resource/resource.properties"/> -->
+	<!-- 配置注解驱动 -->
+	<mvc:annotation-driven />
+	<!-- 配置视图解析器 -->
+	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 配置包扫描器，扫描@Controller注解 -->
+	<context:component-scan base-package="com.wumugulu.sso.controller"/>
+	<!-- 配置资源映射（因为web.xml中的拦截器配置了/，所有页面资源都无法直接访问，不论是放在webapp下还是WEB-INF下） -->
+	<!-- <mvc:resources location="/WEB-INF/css/"		mapping="/css/**"/>
+	<mvc:resources location="/WEB-INF/js/"		mapping="/js/**"/>
+	<mvc:resources location="/WEB-INF/images/"	mapping="/images/**"/> -->
+	
+</beans>
